@@ -30,8 +30,8 @@ export enum areas {
   styleUrl: './map.component.css'
 })
 export class MapComponent implements OnInit {
-  buttons: any[] = new Array(100).fill(null);
   mapGrids: gridObject[] = [];
+  roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
   grailFoundAudio: HTMLAudioElement = new Audio();
 
   ngOnInit() {
@@ -113,5 +113,9 @@ export class MapComponent implements OnInit {
   loadAudio() {
     this.grailFoundAudio.src = "../../../assets/sounds/GrailFound.wav";
     this.grailFoundAudio.load();
+  }
+
+  changeRound() {
+
   }
 }

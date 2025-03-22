@@ -2,24 +2,25 @@
   <img ngSrc="assets/images/BunnyKingdomBoard.jpg" priority alt="Bunny kingdom board" height="1174" width="1173">
 
   <button
-    *ngFor="let button of buttons; let i = index"
-    [disabled]="!mapGrids[i].open"
-    [ngClass]="mapGrids[i].open? 'grid-button' : mapGrids[i].grail? 'grid-button-grail' : 'grid-button-closed'"
+    *ngFor="let button of mapGrids; let i = index"
+    [disabled]="!button.open"
+    [ngClass]="button.open? 'grid-button' : button.grail? 'grid-button-grail' : 'grid-button-closed'"
     [style.top.px]="calculateTop(i)"
     [style.left.px]="calculateLeft(i)"
     (click)="markGrid(i)">
-    <div [ngClass]="(!mapGrids[i].open && mapGrids[i].grail)? 'grid-label-grail' : 'grid-label'">
-      {{ mapGrids[i].label }}
+    <div [ngClass]="(!button.open && button.grail)? 'grid-label-grail' : 'grid-label'">
+      {{ button.label }}
     </div>
   </button>
 
 </div>
 
-<div class='board board--type-bulletin'>
-  <button class="round-button">End of First Round</button>
-  <button class="round-button">End of Second Round</button>
-  <button class="round-button">End of Third Round</button>
-  <button class="round-button">End of Fourth Round</button>
+<div class='board'>
+  <button
+    *ngFor="let button of roundButtons; let i = index"
+    class="round-button"
+    (click)="changeRound()">{{button}}
+  </button>
 </div>
 
 
