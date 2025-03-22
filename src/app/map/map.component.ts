@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgOptimizedImage} from "@angular/common";
 
-export type spaceObject = {
-  index: number;
+export type gridObject = {
   label: string;
-  area: string
+  area: string;
+  open: boolean;
 }
 
 export enum areas {
@@ -21,17 +21,18 @@ export enum areas {
   standalone: true,
   imports: [
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    NgClass
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
 export class MapComponent implements OnInit {
   buttons: any[] = new Array(100).fill(null);
-  mapSpaces: spaceObject[] = []
+  mapGrids: gridObject[] = []
 
   ngOnInit() {
-    this.populateMapSpacesWithData();
+    this.populateMapGridsWithData();
   }
 
   calculateTop(i: number): number {
@@ -42,7 +43,7 @@ export class MapComponent implements OnInit {
     return 102 + (i % 10) * 97.5;
   }
 
-  populateMapSpacesWithData() {
+  populateMapGridsWithData() {
     const mapSize = 100;
     const letters: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     const plainReferences: string[] = ["A9", "B8", "C3", "C10", "D1", "D8", "E2", "E4", "E5", "E7", "E9", "F6", "F10", "G3", "G4", "G6", "G8", "G10", "H1", "H5", "H6", "H8", "H9", "I2", "I3", "I6"];
@@ -72,13 +73,20 @@ export class MapComponent implements OnInit {
         areaType = areas.CITY;
       }
 
-      const button: spaceObject = {
-        index: i + 1,
+      const button: gridObject = {
         label: labelText,
-        area: areaType
+        area: areaType,
+        open: true
       }
-      this.mapSpaces.push(button);
+      this.mapGrids.push(button);
     }
-    console.log(this.mapSpaces);
+  }
+
+  markGrid(index: number) {
+    let grid: gridObject | undefined = this.mapGrids.at(index);
+    if (grid) {
+      grid.open = false;
+      this.mapGrids[index] = grid;
+    }
   }
 }

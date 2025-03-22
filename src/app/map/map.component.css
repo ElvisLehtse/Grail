@@ -24,6 +24,15 @@
   }
 }
 
+.grid-button-closed {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 2px solid red; /* Change color as needed */
+}
+
+
 .grid-button:active {
   transform: scale(0.95); /* Shrinks to 95% of its size */
 }
