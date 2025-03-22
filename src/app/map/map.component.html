@@ -1,0 +1,12 @@
+<div class="map">
+  <img ngSrc="assets/images/BunnyKingdomBoard.jpg" priority alt="Bunny kingdom board" height="1174" width="1173">
+
+  <button
+    *ngFor="let button of buttons; let i = index"
+    class="grid-button"
+    [style.top.px]="calculateTop(i)"
+    [style.left.px]="calculateLeft(i)">
+  </button>
+
+</div>
+

@@ -1,0 +1,26 @@
+.map {
+  position: relative;
+  display: inline-block;
+}
+
+.grid-button {
+  position: absolute;
+  /*top: 112px;*/
+  /*left: 102px;*/
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.grid-button:hover {
+  background-color: rgba(255, 0, 0, 0.2); /* Glowing background */
+  border: 2px solid red; /* Change color as needed */
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); /* Bright red glow effect */
+}
+
+.grid-button:active {
+  transform: scale(0.95); /* Shrinks to 95% of its size */
+}
