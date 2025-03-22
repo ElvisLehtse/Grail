@@ -6,39 +6,34 @@ import {gridObject} from "../map/map.component";
 })
 export class ClueService {
 
-  constructor() { }
+  grailGrid: gridObject | undefined = undefined;
 
   markGridsAfterEndOfRound(mapGrids: gridObject[]): gridObject[] {
-    // Acquire grailGrid
-    const grailGrid: gridObject | undefined = mapGrids.find(grid => grid.grail);
-    if (grailGrid) {
-
-      const validOptions = this.findValidOptions(mapGrids, grailGrid);
+    if (this.grailGrid) {
+      const validOptions = this.findValidOptions(mapGrids, this.grailGrid);
 
       // Shuffle the valid options to ensure randomness
       this.shuffleArray(validOptions);
 
       let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); //Generate a random number between 10 - 15
       let markedCount = 0;
-
       let index = 0; // Keep track of the current position in the array
+
       while (markedCount < numberOfGridsToBeRevealed) {
         if (index >= validOptions.length) {
           index = 0; // Restart from the beginning if we reach the end
         }
 
         const grid = validOptions[index];
-        const distance = this.calculateManhattanDistance(grailGrid.label, grid.label);
+        const distance = this.calculateManhattanDistance(this.grailGrid.label, grid.label);
         const probability = this.getRevealProbability(distance);
 
         if (Math.random() < probability) {
           grid.open = false;
           markedCount++;
         }
-
         index++; // Move to the next grid
       }
-
     }
     return mapGrids;
   }
@@ -73,6 +68,10 @@ export class ClueService {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+  }
+
+  provideClue() {
+
   }
 
 }

@@ -91,8 +91,8 @@ export class MapComponent implements OnInit {
       }
       this.mapGrids.push(button);
     }
-    console.log(this.mapGrids);
     this.markGrailLocation();
+    console.log(this.mapGrids);
   }
 
   markGrailLocation() {
@@ -100,7 +100,7 @@ export class MapComponent implements OnInit {
     let grid: gridObject | undefined = this.mapGrids.at(randomIndex);
     if (grid) {
       grid.grail = true;
-      this.mapGrids[randomIndex] = grid;
+      this.clueService.grailGrid = grid;
     }
   }
 
@@ -112,7 +112,6 @@ export class MapComponent implements OnInit {
         grid.label = "GRAIL";
         this.grailFoundAudio.play();
       }
-      this.mapGrids[index] = grid;
     }
   }
 
