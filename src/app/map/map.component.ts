@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {NgClass, NgForOf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 
 export type gridObject = {
   label: string;
   area: string;
   open: boolean;
+  grail: boolean;
 }
 
 export enum areas {
@@ -22,7 +23,8 @@ export enum areas {
   imports: [
     NgOptimizedImage,
     NgForOf,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
@@ -76,9 +78,21 @@ export class MapComponent implements OnInit {
       const button: gridObject = {
         label: labelText,
         area: areaType,
-        open: true
+        open: true,
+        grail: false,
       }
       this.mapGrids.push(button);
+    }
+    console.log(this.mapGrids);
+    this.markGrailLocation();
+  }
+
+  markGrailLocation() {
+    const randomIndex = Math.floor(Math.random() * 100);
+    let grid: gridObject | undefined = this.mapGrids.at(randomIndex);
+    if (grid) {
+      grid.grail = true;
+      this.mapGrids[randomIndex] = grid;
     }
   }
 
@@ -86,6 +100,9 @@ export class MapComponent implements OnInit {
     let grid: gridObject | undefined = this.mapGrids.at(index);
     if (grid) {
       grid.open = false;
+      if (grid.grail) {
+        grid.label = "GRAIL";
+      }
       this.mapGrids[index] = grid;
     }
   }

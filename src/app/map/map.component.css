@@ -24,17 +24,16 @@
   }
 }
 
+.grid-button:active {
+  transform: scale(0.95); /* Shrinks to 95% of its size */
+}
+
 .grid-button-closed {
   position: absolute;
   width: 100px;
   height: 100px;
   background-color: rgba(255, 0, 0, 0.5);
   border: 2px solid red; /* Change color as needed */
-}
-
-
-.grid-button:active {
-  transform: scale(0.95); /* Shrinks to 95% of its size */
 }
 
 .grid-label {
@@ -45,6 +44,27 @@
   font-family: 'Cinzel Decorative', serif;
   font-weight: bold;
   color: #ffffff;
+  text-shadow:
+    1.5px 1.5px 0 #000000,   /* 1.5px thick black outline */
+    -1.5px -1.5px 0 #000000,
+    1.5px -1.5px 0 #000000,
+    -1.5px 1.5px 0 #000000,   /* Four directions of shadow with 1.5px offset for a thicker edge */
+    0 0 15px;
+}
+
+.grid-button-grail {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.82);
+  border: 3px solid goldenrod; /* Change color as needed */
+}
+
+.grid-label-grail {
+  font-size: 30px;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+  color: rgba(255, 196, 0, 0.76);
   text-shadow:
     1.5px 1.5px 0 #000000,   /* 1.5px thick black outline */
     -1.5px -1.5px 0 #000000,
