@@ -31,10 +31,12 @@ export enum areas {
 })
 export class MapComponent implements OnInit {
   buttons: any[] = new Array(100).fill(null);
-  mapGrids: gridObject[] = []
+  mapGrids: gridObject[] = [];
+  grailFoundAudio: HTMLAudioElement = new Audio();
 
   ngOnInit() {
     this.populateMapGridsWithData();
+    this.loadAudio();
   }
 
   calculateTop(i: number): number {
@@ -102,16 +104,14 @@ export class MapComponent implements OnInit {
       grid.open = false;
       if (grid.grail) {
         grid.label = "GRAIL";
-        this.grailFound();
+        this.grailFoundAudio.play();
       }
       this.mapGrids[index] = grid;
     }
   }
 
-  grailFound() {
-    let audio = new Audio();
-    audio.src = "../../../assets/sounds/GrailFound.wav";
-    audio.load();
-    audio.play();
+  loadAudio() {
+    this.grailFoundAudio.src = "../../../assets/sounds/GrailFound.wav";
+    this.grailFoundAudio.load();
   }
 }
