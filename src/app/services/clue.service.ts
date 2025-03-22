@@ -6,59 +6,39 @@ import {gridObject} from "../map/map.component";
 })
 export class ClueService {
 
-  minimumAvailableGridsToRevealMore: number = 5;
-
   constructor() { }
 
-  markGridsAfterEndOfRound(mapGrids: gridObject[], activeRound: number): gridObject[] {
-    let minDistance: number;
-    switch (activeRound) {
-      case (1):
-        minDistance = 4;
-        break;
-      case (2):
-        minDistance = 3;
-        break;
-      case (3):
-        minDistance = 2;
-        break;
-      case (4):
-        minDistance = 1;
-        break;
-      default:
-        minDistance = 0;
-    }
-
+  markGridsAfterEndOfRound(mapGrids: gridObject[]): gridObject[] {
     // Acquire grailGrid
     const grailGrid: gridObject | undefined = mapGrids.find(grid => grid.grail);
     if (grailGrid) {
-      const validOptions: gridObject[] = this.findValidOptions(mapGrids, grailGrid, minDistance);
-      mapGrids = this.markGrids(mapGrids, validOptions);
+
+      const validOptions = this.findValidOptions(mapGrids, grailGrid);
+
+      // Shuffle the valid options to ensure randomness
+      this.shuffleArray(validOptions);
+
+      let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); //Generate a random number between 10 - 15
+      let markedCount = 0;
+
+      for (const grid of validOptions) {
+        if (markedCount >= numberOfGridsToBeRevealed) break;
+
+        const distance = this.calculateManhattanDistance(grailGrid.label, grid.label);
+        const probability = this.getRevealProbability(distance);
+
+        if (Math.random() < probability) {
+          grid.open = false;
+          markedCount++;
+        }
+      }
+
     }
     return mapGrids;
   }
 
-  // Function to find valid grids that are at least `minDistance` away from the Grail grid
-  findValidOptions(mapGrids: gridObject[], grailGrid: gridObject, minDistance: number): gridObject[] {
-    const validOptions: gridObject[] = [];
-
-    // Loop through the grid and check the distance of each element
-    for (let i = 0; i < mapGrids.length; i++) {
-      const grid = mapGrids[i];
-
-      // Skip if it's the same as the grail grid, or it is already discovered
-      if (grid.label === grailGrid.label || !grid.open) {
-        continue;
-      }
-
-      const distance: number = this.calculateManhattanDistance(grailGrid.label, grid.label);
-
-      // If distance is greater than or equal to minDistance, add it to the valid options
-      if (distance >= minDistance) {
-        validOptions.push(grid);
-      }
-    }
-    return validOptions;
+  findValidOptions(mapGrids: gridObject[], grailGrid: gridObject): gridObject[] {
+    return mapGrids.filter(grid => grid.label !== grailGrid.label && grid.open);
   }
 
   // Function to calculate Manhattan distance between two labels
@@ -75,26 +55,17 @@ export class ClueService {
     return { row, col };
   }
 
-  markGrids(mapGrids: gridObject[], validOptions: gridObject[]): gridObject[] {
-    let numberOfGridsToBeRevealed: number = Math.round(Math.random() * 5 + 10); //Generate a random number between 10 - 15
+  getRevealProbability(distance: number): number {
+    if (distance >= 10) return 0.8;  // 80% chance for far grids
+    if (distance >= 6) return 0.5;   // 50% for medium distance
+    return 0.2;                      // 20% for close distance
+  }
 
-    if (validOptions.length < numberOfGridsToBeRevealed + this.minimumAvailableGridsToRevealMore) {
-      numberOfGridsToBeRevealed = validOptions.length - this.minimumAvailableGridsToRevealMore;
+  shuffleArray(array: gridObject[]): void {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-    if (numberOfGridsToBeRevealed > 0) {
-      const selectedIndexes = new Set<number>(); // Ensures unique selections
-
-      while (selectedIndexes.size < numberOfGridsToBeRevealed) {
-        const randomIndex = Math.floor(Math.random() * validOptions.length);
-        if (!selectedIndexes.has(randomIndex)) {
-          selectedIndexes.add(randomIndex);
-          validOptions[randomIndex].open = false;
-        }
-      }
-    }
-
-    return mapGrids.map((grid) =>
-      validOptions.find(option => option.label === grid.label) || grid);
   }
 
 }

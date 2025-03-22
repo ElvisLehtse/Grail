@@ -123,6 +123,6 @@ export class MapComponent implements OnInit {
 
   changeRound(index: number) {
     this.numberOfRoundsEnded = index + 1;
-    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.numberOfRoundsEnded);
+    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids);
   }
 }
