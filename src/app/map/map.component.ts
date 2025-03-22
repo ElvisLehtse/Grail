@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {ClueService} from "../services/clue.service";
 
 export type gridObject = {
   label: string;
@@ -32,8 +33,12 @@ export enum areas {
 export class MapComponent implements OnInit {
   mapGrids: gridObject[] = [];
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
-  activeRoundButton: number = 0;
+  numberOfRoundsEnded: number = 0;
   grailFoundAudio: HTMLAudioElement = new Audio();
+
+  constructor(
+    private clueService: ClueService
+  ) {}
 
   ngOnInit() {
     this.populateMapGridsWithData();
@@ -117,7 +122,7 @@ export class MapComponent implements OnInit {
   }
 
   changeRound(index: number) {
-    this.activeRoundButton = index + 1;
-    console.log("TEST")
+    this.numberOfRoundsEnded = index + 1;
+    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.numberOfRoundsEnded);
   }
 }
