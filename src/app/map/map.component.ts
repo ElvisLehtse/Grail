@@ -32,6 +32,7 @@ export enum areas {
 export class MapComponent implements OnInit {
   mapGrids: gridObject[] = [];
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
+  activeRoundButton: number = 0;
   grailFoundAudio: HTMLAudioElement = new Audio();
 
   ngOnInit() {
@@ -115,7 +116,8 @@ export class MapComponent implements OnInit {
     this.grailFoundAudio.load();
   }
 
-  changeRound() {
-
+  changeRound(index: number) {
+    this.activeRoundButton = index + 1;
+    console.log("TEST")
   }
 }

@@ -18,8 +18,9 @@
 <div class='board'>
   <button
     *ngFor="let button of roundButtons; let i = index"
-    class="round-button"
-    (click)="changeRound()">{{button}}
+    [ngClass]="(activeRoundButton === i) ? 'round-button' : 'round-button-disabled'"
+    [disabled]="activeRoundButton !== i"
+    (click)="changeRound(i)">{{button}}
   </button>
 </div>
 
