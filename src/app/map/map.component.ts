@@ -102,8 +102,16 @@ export class MapComponent implements OnInit {
       grid.open = false;
       if (grid.grail) {
         grid.label = "GRAIL";
+        this.grailFound();
       }
       this.mapGrids[index] = grid;
     }
+  }
+
+  grailFound() {
+    let audio = new Audio();
+    audio.src = "../../../assets/sounds/GrailFound.wav";
+    audio.load();
+    audio.play();
   }
 }
