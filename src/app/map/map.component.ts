@@ -1,19 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 
-export type buttonObject = {
+export type spaceObject = {
   index: number;
   label: string;
   area: string
 }
 
 export enum areas {
-  PLAINS = "plains",
-  FIELD = "field",
-  FOREST = "forest",
-  WATER = "water",
-  MOUNTAIN = "mountain",
-  CITY = "city"
+  PLAINS = "Plains",
+  FIELD = "Field",
+  FOREST = "Forest",
+  WATER = "Water",
+  MOUNTAIN = "Mountain",
+  CITY = "City"
 }
 
 @Component({
@@ -28,10 +28,10 @@ export enum areas {
 })
 export class MapComponent implements OnInit {
   buttons: any[] = new Array(100).fill(null);
-  mapButtons: buttonObject[] = []
+  mapSpaces: spaceObject[] = []
 
   ngOnInit() {
-    this.populateMapButtonsWithLabels();
+    this.populateMapSpacesWithData();
   }
 
   calculateTop(i: number): number {
@@ -42,7 +42,7 @@ export class MapComponent implements OnInit {
     return 102 + (i % 10) * 97.5;
   }
 
-  populateMapButtonsWithLabels() {
+  populateMapSpacesWithData() {
     const mapSize = 100;
     const letters: string[] = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     const plainReferences: string[] = ["A9", "B8", "C3", "C10", "D1", "D8", "E2", "E4", "E5", "E7", "E9", "F6", "F10", "G3", "G4", "G6", "G8", "G10", "H1", "H5", "H6", "H8", "H9", "I2", "I3", "I6"];
@@ -72,13 +72,13 @@ export class MapComponent implements OnInit {
         areaType = areas.CITY;
       }
 
-      const button: buttonObject = {
+      const button: spaceObject = {
         index: i + 1,
         label: labelText,
         area: areaType
       }
-      this.mapButtons.push(button);
+      this.mapSpaces.push(button);
     }
-    console.log(this.mapButtons);
+    console.log(this.mapSpaces);
   }
 }
