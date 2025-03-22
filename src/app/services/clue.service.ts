@@ -21,9 +21,13 @@ export class ClueService {
       let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); //Generate a random number between 10 - 15
       let markedCount = 0;
 
-      for (const grid of validOptions) {
-        if (markedCount >= numberOfGridsToBeRevealed) break;
+      let index = 0; // Keep track of the current position in the array
+      while (markedCount < numberOfGridsToBeRevealed) {
+        if (index >= validOptions.length) {
+          index = 0; // Restart from the beginning if we reach the end
+        }
 
+        const grid = validOptions[index];
         const distance = this.calculateManhattanDistance(grailGrid.label, grid.label);
         const probability = this.getRevealProbability(distance);
 
@@ -31,6 +35,8 @@ export class ClueService {
           grid.open = false;
           markedCount++;
         }
+
+        index++; // Move to the next grid
       }
 
     }
@@ -56,9 +62,10 @@ export class ClueService {
   }
 
   getRevealProbability(distance: number): number {
-    if (distance >= 10) return 0.8;  // 80% chance for far grids
-    if (distance >= 6) return 0.5;   // 50% for medium distance
-    return 0.2;                      // 20% for close distance
+    if (distance >= 9) return 0.8;  // 80% chance for far grids
+    if (distance >= 6) return 0.5;  // 50% for medium distance
+    if (distance >= 3) return 0.3;  // 30% for close distance
+    return 0.2;                     // 20% for very close distance
   }
 
   shuffleArray(array: gridObject[]): void {
