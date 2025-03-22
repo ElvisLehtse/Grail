@@ -113,16 +113,58 @@
   transform: scale(1);
 }
 
-.board {
+.board-container {
+  position: relative;
+  top: 130px;
+  text-align: center;
+}
+
+.board-title {
+  font-size: 30px;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+  color: rgb(228, 220, 220);
+  text-shadow:
+    1.5px 1.5px 0 #000000,
+    -1.5px -1.5px 0 #000000,
+    1.5px -1.5px 0 #000000,
+    -1.5px 1.5px 0 #000000,   /* Four directions of shadow with 1.5px offset for a thicker edge */
+    0 0 15px;
+}
+
+.clue-container-first, .clue-container-second {
+  position: relative;
+}
+
+.clue-container-first {
+  top: 30px;
+}
+
+.clue-container-second {
+  top: 190px;
+}
+
+.board-top, .board-bottom {
   background-repeat: no-repeat;
   position: absolute;
   left: 1200px;
-  top: 0;
   height: 600px;
   width: 340px;
   background-image: url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-top-chains"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-plaque"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-corners"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-horizontal-sides"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-vertical-sides"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-holes"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-horizontal-sides-depth"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-corners-depth"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-horizontal-sides-shadow"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-vertical-sides-shadow"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-corners-shadow"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-holes-shadow"), url("https://gistcdn.githack.com/andresangelini/d57f93b605eec432fdea98b969aaac72/raw/f0ee9369b781dcf01eefc37575a99d8e5dbe7b35/board.svg#l-bulletin-planks");
   background-position: center -22px, center bottom, center bottom, center bottom, center calc(100% - (56px - 9.4px) - 6.5px), center bottom, center bottom, center bottom, center bottom, center calc(100% - (56px - 9.4px) - 6.5px), center bottom, center bottom, center bottom;
   background-size: calc((100% - (56px - 9.4px) * 2) * 0.8) calc(((100% - 80%) / 1) + 22px * 2), 35% 80%, 100% 80%, calc(100% - (56px - 9.4px) * 2) 80%, 100% calc(80% - (56px - 9.4px) * 2 - 6.5px), calc((100% - (56px - 9.4px) * 2) * 0.8) 80%, calc(100% - (56px - 9.4px) * 2) 80%, 100% 80%, calc(100% - (56px - 9.4px) * 2) 80%, 100% calc(80% - (56px - 9.4px) * 2 - 6.5px), 100% 80%, calc(((100% - (56px - 9.4px) * 2) * 0.8) + 2.16px * 2) 80%, 100% 80%;
 }
+
+.board-top {
+  top: -50px;
+  z-index: 2;
+}
+
+.board-bottom {
+  top: 520px;
+  z-index: 1;
+}
+
+
 
 

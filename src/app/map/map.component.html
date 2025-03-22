@@ -15,7 +15,7 @@
 
 </div>
 
-<div class='board'>
+<div class='board-top'>
   <button
     *ngFor="let button of roundButtons; let i = index"
     [ngClass]="(numberOfRoundsEnded === i) ? 'round-button' : 'round-button-disabled'"
@@ -23,6 +23,24 @@
     (click)="changeRound(i)">{{button}}
   </button>
 </div>
+
+<div class='board-bottom'>
+  <div class="board-container">
+    <span class="board-title">Clues</span>
+    <div class="clue-container-first">
+      <span class="board-title">Two to Three steps</span>
+      <ng-container *ngIf="clueGrids.length">
+        <ng-container *ngFor="let clue of clueGrids">
+          {{ clue.area }}
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="clue-container-second">
+      <span class="board-title">One to Two steps</span>
+    </div>
+  </div>
+</div>
+
 
 
 

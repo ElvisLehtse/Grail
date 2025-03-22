@@ -35,6 +35,7 @@ export class MapComponent implements OnInit {
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
   numberOfRoundsEnded: number = 0;
   grailFoundAudio: HTMLAudioElement = new Audio();
+  clueGrids: gridObject[] = [];
 
   constructor(
     private clueService: ClueService
@@ -43,6 +44,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.populateMapGridsWithData();
     this.loadAudio();
+    this.clueService.findPossibleGridClues(this.mapGrids);
   }
 
   calculateTop(i: number): number {
@@ -123,5 +125,6 @@ export class MapComponent implements OnInit {
   changeRound(index: number) {
     this.numberOfRoundsEnded = index + 1;
     this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids);
+    this.clueGrids.push(this.clueService.getClue(this.numberOfRoundsEnded));
   }
 }

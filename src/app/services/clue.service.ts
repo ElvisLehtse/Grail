@@ -7,6 +7,8 @@ import {gridObject} from "../map/map.component";
 export class ClueService {
 
   grailGrid: gridObject | undefined = undefined;
+  possibleOneOrTwoStepGridClues: gridObject[] = [];
+  possibleTwoOrThreeStepGridClues: gridObject[] = [];
 
   markGridsAfterEndOfRound(mapGrids: gridObject[]): gridObject[] {
     if (this.grailGrid) {
@@ -70,8 +72,35 @@ export class ClueService {
     }
   }
 
-  provideClue() {
-
+  findPossibleGridClues(mapGrids: gridObject[]) {
+    if (!this.grailGrid) return;
+    for (let i = 0; i < mapGrids.length; i++) {
+      const distance: number = this.calculateManhattanDistance(this.grailGrid.label, mapGrids[i].label);
+      if (distance <= 2) {
+        this.possibleOneOrTwoStepGridClues.push(mapGrids[i]);
+      }
+      if (distance <= 3 && distance > 1) {
+        this.possibleTwoOrThreeStepGridClues.push(mapGrids[i]);
+      }
+    }
   }
 
+  getClue(endOfRound: number) {
+    if (endOfRound <= 2) {
+      const randomIndex = Math.floor(Math.random() * this.possibleTwoOrThreeStepGridClues.length);
+      const randomGrid = this.possibleTwoOrThreeStepGridClues[randomIndex];
+      this.possibleTwoOrThreeStepGridClues.splice(randomIndex, 1);
+      if (this.possibleOneOrTwoStepGridClues.includes(randomGrid)) {
+        const index = this.possibleOneOrTwoStepGridClues.indexOf(randomGrid);
+        this.possibleOneOrTwoStepGridClues.splice(index, 1);
+      }
+      return randomGrid;
+
+    } else {
+      const randomIndex = Math.floor(Math.random() * this.possibleOneOrTwoStepGridClues.length);
+      const randomGrid = this.possibleOneOrTwoStepGridClues[randomIndex];
+      this.possibleOneOrTwoStepGridClues.splice(randomIndex, 1);
+      return randomGrid;
+    }
+  }
 }
