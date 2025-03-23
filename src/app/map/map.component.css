@@ -195,7 +195,7 @@
   position: absolute;
   display: inline-block;
   left: 1600px;
-  top: -170px;
+  top: -340px;
   transition: top 0.5s ease-in-out;
   text-align: center;
   width: 217px;
@@ -215,7 +215,7 @@
   left: 0;
 }
 
-.settings-text, .player-count-container {
+.player-settings-text, .player-count-container, .sound-settings-container {
   position: relative;
   font-family: 'Cinzel Decorative', serif;
   font-weight: bold;
@@ -228,7 +228,7 @@
     0 0 15px;
 }
 
-.settings-text {
+.player-settings-text {
   font-size: 25px;
   top: 40px;
 }
@@ -255,4 +255,21 @@
 
 .player-count-button {
   margin: 0;
+}
+
+.sound-settings-container {
+  font-size: 25px;
+  top: 80px;
+}
+
+.dig-sound-button {
+  font-size: 17px;
+  color: rgb(228, 220, 220);
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  display: block;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
 }

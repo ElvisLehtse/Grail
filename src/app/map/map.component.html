@@ -88,8 +88,8 @@
 </button>
 
 <div class="settings-menu" [ngClass]="{'open': isSettingsOpen}">
-  <img ngSrc="assets/images/SettingsMenu.png" alt="Settings Menu" height="170" width="217">
-  <span class="settings-text">Player count</span>
+  <img ngSrc="assets/images/SettingsMenu.png" alt="Settings Menu" height="339" width="216">
+  <span class="player-settings-text">Player count</span>
   <div
     class="player-count-container">
     <span>Two players</span>
@@ -97,7 +97,9 @@
       (click)="setPlayerCount()"
       [disabled]="isPlayerCountTwo"
       class="player-count-button-container">
-      <ng-container *ngIf="isPlayerCountTwo; else playerCountThree">(⚪)</ng-container>
+      <ng-container *ngIf="isPlayerCountTwo; else playerCountThree">
+        <pre class="player-count-button">(⚪)</pre>
+      </ng-container>
       <ng-template #playerCountThree>
         <pre class="player-count-button">(  )</pre>
       </ng-template>
@@ -110,9 +112,25 @@
       (click)="setPlayerCount()"
       [disabled]="!isPlayerCountTwo"
       class="player-count-button-container">
-      <ng-container *ngIf="!isPlayerCountTwo; else playerCountTwo">(⚪)</ng-container>
+      <ng-container *ngIf="!isPlayerCountTwo; else playerCountTwo">
+        <pre class="player-count-button">(⚪)</pre>
+      </ng-container>
       <ng-template #playerCountTwo>
         <pre class="player-count-button">(  )</pre>
+      </ng-template>
+    </button>
+  </div>
+  <div
+    class="sound-settings-container">
+    <span>Dig sound</span>
+    <button
+      (click)="setDigAudio()"
+      class="dig-sound-button">
+      <ng-container *ngIf="digSoundOn; else digSoundOff">
+        <pre>(⚪)</pre>
+      </ng-container>
+      <ng-template #digSoundOff>
+        <pre>(  )</pre>
       </ng-template>
     </button>
   </div>

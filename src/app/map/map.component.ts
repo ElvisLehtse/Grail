@@ -41,6 +41,7 @@ export class MapComponent implements OnInit {
   areas = areas;
   isSettingsOpen: boolean = false;
   public isPlayerCountTwo: boolean = true;
+  public digSoundOn: boolean = true;
 
   constructor(
     private clueService: ClueService
@@ -117,7 +118,7 @@ export class MapComponent implements OnInit {
       grid.open = false;
       if (grid.grail) {
         this.grailFoundAudio.play();
-      } else {
+      } else if (this.digSoundOn) {
         this.digAudio.play();
       }
     }
@@ -142,5 +143,9 @@ export class MapComponent implements OnInit {
 
   setPlayerCount() {
     this.isPlayerCountTwo = !this.isPlayerCountTwo;
+  }
+
+  setDigAudio() {
+    this.digSoundOn = !this.digSoundOn;
   }
 }
