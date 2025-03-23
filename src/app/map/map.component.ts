@@ -36,6 +36,7 @@ export class MapComponent implements OnInit {
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
   numberOfRoundsEnded: number = 0;
   grailFoundAudio: HTMLAudioElement = new Audio();
+  digAudio: HTMLAudioElement = new Audio();
   clueGrids: gridObject[] = [];
   areas = areas;
   isSettingsOpen: boolean = false;
@@ -116,6 +117,8 @@ export class MapComponent implements OnInit {
       grid.open = false;
       if (grid.grail) {
         this.grailFoundAudio.play();
+      } else {
+        this.digAudio.play();
       }
     }
   }
@@ -123,6 +126,8 @@ export class MapComponent implements OnInit {
   loadAudio() {
     this.grailFoundAudio.src = "../../../assets/sounds/GrailFound.wav";
     this.grailFoundAudio.load();
+    this.digAudio.src = "../../../assets/sounds/DigSound.wav";
+    this.digAudio.load();
   }
 
   changeRound(index: number) {
