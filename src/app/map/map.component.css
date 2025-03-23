@@ -120,6 +120,7 @@
 }
 
 .board-title {
+  text-align: center;
   font-size: 30px;
   font-family: 'Cinzel Decorative', serif;
   font-weight: bold;
@@ -133,15 +134,17 @@
 }
 
 .clue-container-first, .clue-container-second {
-  position: relative;
+  position: absolute;
 }
 
 .clue-container-first {
-  top: 30px;
+  top: 60px;
+  left: 50px;
 }
 
 .clue-container-second {
-  top: 190px;
+  top: 255px;
+  left: 50px;
 }
 
 .board-top, .board-bottom {
@@ -165,6 +168,17 @@
   z-index: 1;
 }
 
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.image-container {
+  display: inline-block;
+}
 
 
 

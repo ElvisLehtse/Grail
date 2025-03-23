@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgClass, NgForOf, NgIf, NgOptimizedImage, SlicePipe} from "@angular/common";
 import {ClueService} from "../services/clue.service";
 
 export type gridObject = {
@@ -25,7 +25,8 @@ export enum areas {
     NgOptimizedImage,
     NgForOf,
     NgClass,
-    NgIf
+    NgIf,
+    SlicePipe
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
@@ -36,6 +37,7 @@ export class MapComponent implements OnInit {
   numberOfRoundsEnded: number = 0;
   grailFoundAudio: HTMLAudioElement = new Audio();
   clueGrids: gridObject[] = [];
+  areas = areas;
 
   constructor(
     private clueService: ClueService

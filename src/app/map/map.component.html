@@ -29,14 +29,53 @@
     <span class="board-title">Clues</span>
     <div class="clue-container-first">
       <span class="board-title">Two to Three steps</span>
-      <ng-container *ngIf="clueGrids.length">
-        <ng-container *ngFor="let clue of clueGrids">
-          {{ clue.area }}
+      <div class="flex-container">
+        <ng-container *ngFor="let clue of clueGrids | slice:0:2" >
+          <div *ngIf ="clue.area === areas.PLAINS" class="image-container">
+            <img ngSrc="assets/images/Plains.png" alt="Plains" height="94" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.FIELD" class="image-container">
+            <img ngSrc="assets/images/Field.png" alt="Field" height="98" width="95">
+          </div>
+          <div *ngIf ="clue.area === areas.FOREST" class="image-container">
+            <img ngSrc="assets/images/Forest.png" alt="Forest" height="95" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.WATER" class="image-container">
+            <img ngSrc="assets/images/Water.png" alt="Water" height="99" width="93">
+          </div>
+          <div *ngIf ="clue.area === areas.MOUNTAIN" class="image-container">
+            <img ngSrc="assets/images/Mountain.png" alt="Mountain" height="94" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.CITY" class="image-container">
+            <img ngSrc="assets/images/City.png" alt="City" height="95" width="95">
+          </div>
         </ng-container>
-      </ng-container>
+      </div>
     </div>
     <div class="clue-container-second">
       <span class="board-title">One to Two steps</span>
+      <div class="flex-container">
+        <ng-container *ngFor="let clue of clueGrids | slice:2: 4" >
+          <div *ngIf ="clue.area === areas.PLAINS" class="image-container">
+            <img ngSrc="assets/images/Plains.png" alt="Plains" height="94" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.FIELD" class="image-container">
+            <img ngSrc="assets/images/Field.png" alt="Field" height="98" width="95">
+          </div>
+          <div *ngIf ="clue.area === areas.FOREST" class="image-container">
+            <img ngSrc="assets/images/Forest.png" alt="Forest" height="95" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.WATER" class="image-container">
+            <img ngSrc="assets/images/Water.png" alt="Water" height="99" width="93">
+          </div>
+          <div *ngIf ="clue.area === areas.MOUNTAIN" class="image-container">
+            <img ngSrc="assets/images/Mountain.png" alt="Mountain" height="94" width="96">
+          </div>
+          <div *ngIf ="clue.area === areas.CITY" class="image-container">
+            <img ngSrc="assets/images/City.png" alt="City" height="95" width="95">
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
