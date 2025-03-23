@@ -12,12 +12,13 @@ export class ClueService {
 
   markGridsAfterEndOfRound(mapGrids: gridObject[]): gridObject[] {
     if (this.grailGrid) {
-      const validOptions = this.findValidOptions(mapGrids, this.grailGrid);
+      const validOptions: gridObject[] = this.findValidOptions(mapGrids, this.grailGrid);
+      if (validOptions.length === 0) return mapGrids; // If no remaining grids are available
 
       // Shuffle the valid options to ensure randomness
       this.shuffleArray(validOptions);
 
-      let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); //Generate a random number between 10 - 15
+      let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); // Generate a random number between 10 - 15
       let markedCount = 0;
       let index = 0; // Keep track of the current position in the array
 
@@ -27,7 +28,6 @@ export class ClueService {
         }
 
         const grid = validOptions[index];
-        if (grid === undefined) return mapGrids; // If no remaining grids are available
         const distance = this.calculateManhattanDistance(this.grailGrid.label, grid.label);
         const probability = this.getRevealProbability(distance);
 
