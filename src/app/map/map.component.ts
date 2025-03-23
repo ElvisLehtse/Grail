@@ -113,7 +113,6 @@ export class MapComponent implements OnInit {
     if (grid) {
       grid.open = false;
       if (grid.grail) {
-        grid.label = "GRAIL";
         this.grailFoundAudio.play();
       }
     }

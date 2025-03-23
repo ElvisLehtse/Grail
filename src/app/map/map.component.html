@@ -8,9 +8,14 @@
     [style.top.px]="calculateTop(i)"
     [style.left.px]="calculateLeft(i)"
     (click)="markGrid(i)">
-    <div [ngClass]="(!button.open && button.grail)? 'grid-label-grail' : 'grid-label'">
-      {{ button.label }}
+    <div *ngIf="!button.open && button.grail; else labelTemplate" class="grid-grail">
+      <img ngSrc="assets/images/Grail.png" priority alt="Bunny kingdom board" height="100" width="100">
     </div>
+    <ng-template #labelTemplate>
+      <div class="grid-label">
+        {{ button.label }}
+      </div>
+    </ng-template>
   </button>
 
 </div>

@@ -56,21 +56,14 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background-color: rgba(255, 255, 255, 0.82);
-  border: 3px solid goldenrod;
 }
 
-.grid-label-grail {
-  font-size: 30px;
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: bold;
-  color: rgba(255, 196, 0, 0.76);
-  text-shadow:
-    1.5px 1.5px 0 #000000,
-    -1.5px -1.5px 0 #000000,
-    1.5px -1.5px 0 #000000,
-    -1.5px 1.5px 0 #000000,   /* Four directions of shadow with 1.5px offset for a thicker edge */
-    0 0 15px;
+.grid-grail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 .round-button {
