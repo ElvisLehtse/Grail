@@ -38,6 +38,8 @@ export class MapComponent implements OnInit {
   grailFoundAudio: HTMLAudioElement = new Audio();
   clueGrids: gridObject[] = [];
   areas = areas;
+  isSettingsOpen: boolean = false;
+  public isPlayerCountTwo: boolean = true;
 
   constructor(
     private clueService: ClueService
@@ -125,7 +127,15 @@ export class MapComponent implements OnInit {
 
   changeRound(index: number) {
     this.numberOfRoundsEnded = index + 1;
-    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids);
+    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.isPlayerCountTwo);
     this.clueGrids.push(this.clueService.getClue(this.numberOfRoundsEnded));
+  }
+
+  openSettings() {
+    this.isSettingsOpen = !this.isSettingsOpen;
+  }
+
+  setPlayerCount() {
+    this.isPlayerCountTwo = !this.isPlayerCountTwo;
   }
 }

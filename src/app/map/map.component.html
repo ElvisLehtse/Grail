@@ -1,6 +1,5 @@
 <div class="map">
   <img ngSrc="assets/images/BunnyKingdomBoard.jpg" priority alt="Bunny kingdom board" height="1174" width="1173">
-
   <button
     *ngFor="let button of mapGrids; let i = index"
     [disabled]="!button.open"
@@ -17,7 +16,6 @@
       </div>
     </ng-template>
   </button>
-
 </div>
 
 <div class='board-top'>
@@ -85,8 +83,37 @@
   </div>
 </div>
 
+<button class="settings" (click)="openSettings()">
+  <img ngSrc="assets/images/Settings.png" alt="Settings" height="75" width="75">
+</button>
 
-
-
-
-
+<div class="settings-menu" [ngClass]="{'open': isSettingsOpen}">
+  <img ngSrc="assets/images/SettingsMenu.png" alt="Settings Menu" height="170" width="217">
+  <span class="settings-text">Player count</span>
+  <div
+    class="player-count-container">
+    <span>Two players</span>
+    <button
+      (click)="setPlayerCount()"
+      [disabled]="isPlayerCountTwo"
+      class="player-count-button-container">
+      <ng-container *ngIf="isPlayerCountTwo; else playerCountThree">(⚪)</ng-container>
+      <ng-template #playerCountThree>
+        <pre class="player-count-button">(  )</pre>
+      </ng-template>
+    </button>
+  </div>
+  <div
+    class="player-count-container">
+    <span>Three players</span>
+    <button
+      (click)="setPlayerCount()"
+      [disabled]="!isPlayerCountTwo"
+      class="player-count-button-container">
+      <ng-container *ngIf="!isPlayerCountTwo; else playerCountTwo">(⚪)</ng-container>
+      <ng-template #playerCountTwo>
+        <pre class="player-count-button">(  )</pre>
+      </ng-template>
+    </button>
+  </div>
+</div>

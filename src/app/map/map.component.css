@@ -173,5 +173,86 @@
   display: inline-block;
 }
 
+.settings {
+  position: absolute;
+  left: 1510px;
+  top: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.settings:hover {
+  transform: scale(1.05);
+}
+
+.settings:active {
+  transform: scale(1);
+}
+
+.settings-menu {
+  position: absolute;
+  display: inline-block;
+  left: 1600px;
+  top: -170px;
+  transition: top 0.5s ease-in-out;
+  text-align: center;
+  width: 217px;
+  height: 170px;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-menu.open {
+  top: 0;
+}
 
 
+.settings-menu img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.settings-text, .player-count-container {
+  position: relative;
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: bold;
+  color: rgb(228, 220, 220);
+  text-shadow:
+    1.5px 1.5px 0 #000000,
+    -1.5px -1.5px 0 #000000,
+    1.5px -1.5px 0 #000000,
+    -1.5px 1.5px 0 #000000,
+    0 0 15px;
+}
+
+.settings-text {
+  font-size: 25px;
+  top: 40px;
+}
+
+.player-count-container {
+  display: flex;
+  top: 50px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: left;
+  left: 30px;
+  font-size: 20px;
+}
+
+.player-count-button-container {
+  font-size: 17px;
+  color: rgb(228, 220, 220);
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+}
+
+.player-count-button {
+  margin: 0;
+}

@@ -10,7 +10,7 @@ export class ClueService {
   possibleOneOrTwoStepGridClues: gridObject[] = [];
   possibleTwoOrThreeStepGridClues: gridObject[] = [];
 
-  markGridsAfterEndOfRound(mapGrids: gridObject[]): gridObject[] {
+  markGridsAfterEndOfRound(mapGrids: gridObject[], isPlayerCountTwo: boolean): gridObject[] {
     if (this.grailGrid) {
       const validOptions: gridObject[] = this.findValidOptions(mapGrids, this.grailGrid);
       if (validOptions.length === 0) return mapGrids; // If no remaining grids are available
@@ -18,7 +18,13 @@ export class ClueService {
       // Shuffle the valid options to ensure randomness
       this.shuffleArray(validOptions);
 
-      let numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); // Generate a random number between 10 - 15
+      let numberOfGridsToBeRevealed: number;
+      if (isPlayerCountTwo) {
+        numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); // Generate a random number between 10 - 15 for two players
+      } else {
+        numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 7); // Generate a random number between 7 - 12 for three players
+      }
+
       let markedCount = 0;
       let index = 0; // Keep track of the current position in the array
 
