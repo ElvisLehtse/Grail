@@ -27,6 +27,7 @@ export class ClueService {
         }
 
         const grid = validOptions[index];
+        if (grid === undefined) return mapGrids; // If no remaining grids are available
         const distance = this.calculateManhattanDistance(this.grailGrid.label, grid.label);
         const probability = this.getRevealProbability(distance);
 
