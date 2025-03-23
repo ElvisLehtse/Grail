@@ -9,7 +9,7 @@
     [style.left.px]="calculateLeft(i)"
     (click)="markGrid(i)">
     <div *ngIf="!button.open && button.grail; else labelTemplate" class="grid-grail">
-      <img ngSrc="assets/images/Grail.png" priority alt="Bunny kingdom board" height="100" width="100">
+      <img ngSrc="assets/images/Grail.png" priority alt="Grail" height="100" width="100">
     </div>
     <ng-template #labelTemplate>
       <div class="grid-label">
