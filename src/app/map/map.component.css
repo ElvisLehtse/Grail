@@ -67,7 +67,7 @@
 }
 
 .round-button {
-  background: url('/assets/images/WoodenBackground.png') center/cover, #8B5A2B;
+  background: url('/assets/images/WoodenBackground.png') center/cover;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -95,7 +95,7 @@
 }
 
 .round-button:hover {
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/dark-wood.png') center/cover, #6B3A1B;
+  background: #6B3A1B;
   box-shadow: inset -4px -4px 3px rgba(0, 0, 0, 0.7),
   inset 4px 4px 3px rgba(255, 255, 255, 0.1),
   0 2px 4px rgba(0, 0, 0, 0.6);
