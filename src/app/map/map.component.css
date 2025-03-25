@@ -67,13 +67,13 @@
 }
 
 .round-button {
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/wood_pattern.png') center/cover, #8B5A2B;
+  background: url('/assets/images/WoodenBackground.png') center/cover, #8B5A2B;
   cursor: pointer;
   transition: 0.2s;
 }
 
 .round-button-disabled {
-  background: url('https://www.toptal.com/designers/subtlepatterns/uploads/grey_washed_wall.png') center/cover, #4E3B31;
+  background: #4E3B31;
 }
 
 .round-button, .round-button-disabled {
