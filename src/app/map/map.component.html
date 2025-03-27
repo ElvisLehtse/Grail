@@ -95,9 +95,9 @@
     <span>Two players</span>
     <button
       (click)="setPlayerCount()"
-      [disabled]="isPlayerCountTwo"
+      [disabled]="playerCount === 2"
       class="player-count-button-container">
-      <ng-container *ngIf="isPlayerCountTwo; else playerCountThree">
+      <ng-container *ngIf="playerCount === 2; else playerCountThree">
         <pre class="player-count-button">(⚪)</pre>
       </ng-container>
       <ng-template #playerCountThree>
@@ -110,9 +110,9 @@
     <span>Three players</span>
     <button
       (click)="setPlayerCount()"
-      [disabled]="!isPlayerCountTwo"
+      [disabled]="playerCount === 3"
       class="player-count-button-container">
-      <ng-container *ngIf="!isPlayerCountTwo; else playerCountTwo">
+      <ng-container *ngIf="playerCount === 3; else playerCountTwo">
         <pre class="player-count-button">(⚪)</pre>
       </ng-container>
       <ng-template #playerCountTwo>

@@ -10,7 +10,7 @@ export class ClueService {
   possibleOneOrTwoStepGridClues: gridObject[] = [];
   possibleTwoOrThreeStepGridClues: gridObject[] = [];
 
-  markGridsAfterEndOfRound(mapGrids: gridObject[], isPlayerCountTwo: boolean): gridObject[] {
+  markGridsAfterEndOfRound(mapGrids: gridObject[], playerCount: number): gridObject[] {
     if (this.grailGrid) {
       const validOptions: gridObject[] = this.findValidOptions(mapGrids, this.grailGrid);
       if (validOptions.length === 0) return mapGrids; // If no remaining grids are available
@@ -19,7 +19,7 @@ export class ClueService {
       this.shuffleArray(validOptions);
 
       let numberOfGridsToBeRevealed: number;
-      if (isPlayerCountTwo) {
+      if (playerCount === 2) {
         numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 10); // Generate a random number between 10 - 15 for two players
       } else {
         numberOfGridsToBeRevealed = Math.round(Math.random() * 5 + 7); // Generate a random number between 7 - 12 for three players
@@ -83,7 +83,7 @@ export class ClueService {
     if (!this.grailGrid) return;
     for (let i = 0; i < mapGrids.length; i++) {
       const distance: number = this.calculateManhattanDistance(this.grailGrid.label, mapGrids[i].label);
-      if (distance <= 2) {
+      if (distance <= 2 && !mapGrids[i].grail) {
         this.possibleOneOrTwoStepGridClues.push(mapGrids[i]);
       }
       if (distance <= 3 && distance > 1) {

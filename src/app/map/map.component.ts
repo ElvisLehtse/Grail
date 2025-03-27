@@ -40,7 +40,7 @@ export class MapComponent implements OnInit {
   clueGrids: gridObject[] = [];
   areas = areas;
   isSettingsOpen: boolean = false;
-  public isPlayerCountTwo: boolean = true;
+  public playerCount: number = 2;
   public digSoundOn: boolean = true;
 
   constructor(
@@ -136,7 +136,7 @@ export class MapComponent implements OnInit {
 
   changeRound(index: number) {
     this.numberOfRoundsEnded = index + 1;
-    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.isPlayerCountTwo);
+    this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.playerCount);
     this.clueGrids.push(this.clueService.getClue(this.numberOfRoundsEnded));
   }
 
@@ -145,7 +145,7 @@ export class MapComponent implements OnInit {
   }
 
   setPlayerCount() {
-    this.isPlayerCountTwo = !this.isPlayerCountTwo;
+    this.playerCount = this.playerCount === 2 ? 3 : 2;
   }
 
   setDigAudio() {
