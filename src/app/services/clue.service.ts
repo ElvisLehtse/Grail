@@ -79,6 +79,7 @@ export class ClueService {
     }
   }
 
+  // This function sets up all the possible clue locations depending on the Grail location
   findPossibleGridClues(mapGrids: gridObject[]) {
     if (!this.grailGrid) return;
     for (let i = 0; i < mapGrids.length; i++) {
@@ -92,6 +93,8 @@ export class ClueService {
     }
   }
 
+  // Provides one random grid from the possible clue lists. The grid is then removed from the list to avoid
+  // duplicates. If the grid exists in both lists, it is removed from both as well
   getClue(endOfRound: number) {
     if (endOfRound <= 2) {
       const randomIndex = Math.floor(Math.random() * this.possibleTwoOrThreeStepGridClues.length);

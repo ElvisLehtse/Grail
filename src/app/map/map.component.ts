@@ -32,6 +32,8 @@ export enum areas {
   styleUrl: './map.component.css'
 })
 export class MapComponent implements OnInit {
+  public readonly twoPlayers = 2;
+  public readonly threePlayers = 3;
   mapGrids: gridObject[] = [];
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
   numberOfRoundsEnded: number = 0;
@@ -40,7 +42,7 @@ export class MapComponent implements OnInit {
   clueGrids: gridObject[] = [];
   areas = areas;
   isSettingsOpen: boolean = false;
-  public playerCount: number = 2;
+  public playerCount: number = this.twoPlayers;
   public digSoundOn: boolean = true;
 
   constructor(
@@ -145,7 +147,7 @@ export class MapComponent implements OnInit {
   }
 
   setPlayerCount() {
-    this.playerCount = this.playerCount === 2 ? 3 : 2;
+    this.playerCount = this.playerCount === this.twoPlayers ? this.threePlayers : this.twoPlayers;
   }
 
   setDigAudio() {
