@@ -3,10 +3,16 @@
   display: inline-block;
 }
 
-.grid-button {
-  position: absolute;
+.grid-button, .grid-button-closed, .grid-button-grail, .grid-label, .grid-grail, .shovel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100px;
   height: 100px;
+}
+
+.grid-button {
+  position: absolute;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -30,13 +36,12 @@
 
 .grid-button-closed {
   position: absolute;
-  width: 100px;
-  height: 100px;
   background-color: rgba(255, 0, 0, 0.5);
   border: 2px solid red;
 }
 
 .grid-label {
+  position: absolute;
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease, visibility 0s 0.3s; /* Smooth fade-in */
@@ -54,16 +59,6 @@
 
 .grid-button-grail {
   position: absolute;
-  width: 100px;
-  height: 100px;
-}
-
-.grid-grail {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 .round-button {

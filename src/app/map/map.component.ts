@@ -6,6 +6,7 @@ export type gridObject = {
   label: string;
   area: string;
   open: boolean;
+  dug: boolean;
   grail: boolean;
 }
 
@@ -97,6 +98,7 @@ export class MapComponent implements OnInit {
         label: labelText,
         area: areaType,
         open: true,
+        dug: false,
         grail: false,
       }
       this.mapGrids.push(button);
@@ -118,6 +120,7 @@ export class MapComponent implements OnInit {
     let grid: gridObject | undefined = this.mapGrids.at(index);
     if (grid) {
       grid.open = false;
+      grid.dug = true;
       if (grid.grail) {
         this.digSound.play();
         setTimeout(() => {

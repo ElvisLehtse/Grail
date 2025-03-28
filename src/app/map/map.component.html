@@ -1,18 +1,21 @@
 <div class="map">
   <img ngSrc="assets/images/BunnyKingdomBoard.jpg" priority alt="Bunny kingdom board" height="1174" width="1173">
   <button
-    *ngFor="let button of mapGrids; let i = index"
-    [disabled]="!button.open"
-    [ngClass]="button.open? 'grid-button' : button.grail? 'grid-button-grail' : 'grid-button-closed'"
+    *ngFor="let grid of mapGrids; let i = index"
+    [disabled]="!grid.open"
+    [ngClass]="grid.open? 'grid-button' : grid.grail? 'grid-button-grail' : 'grid-button-closed'"
     [style.top.px]="calculateTop(i)"
     [style.left.px]="calculateLeft(i)"
     (click)="markGrid(i)">
-    <div *ngIf="!button.open && button.grail; else labelTemplate" class="grid-grail">
+    <div *ngIf="!grid.open && grid.grail; else labelTemplate" class="grid-grail">
       <img ngSrc="assets/images/Grail.png" priority alt="Grail" height="100" width="100">
+    </div>
+    <div *ngIf="grid.dug && !grid.grail" class="shovel">
+      <img ngSrc="assets/images/Shovel.png" priority alt="Shovel" height="100" width="100">
     </div>
     <ng-template #labelTemplate>
       <div class="grid-label">
-        {{ button.label }}
+        {{ grid.label }}
       </div>
     </ng-template>
   </button>
