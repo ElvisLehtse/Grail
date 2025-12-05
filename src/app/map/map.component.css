@@ -3,7 +3,7 @@
   display: inline-block;
 }
 
-.grid-button, .grid-button-closed, .grid-button-grail, .grid-label, .grid-grail, .shovel {
+.grid-button, .grid-button-closed, .grid-button-closed-round-end, .grid-button-grail, .grid-label, .grid-grail, .shovel {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,6 +38,13 @@
   position: absolute;
   background-color: rgba(255, 0, 0, 0.5);
   border: 2px solid red;
+}
+
+.grid-button-closed-round-end {
+  position: absolute;
+  background-color: rgba(255, 0, 0, 0.5);
+  border: 2px solid red;
+  transition: background-color 3s ease, border-color 3s ease;
 }
 
 .grid-label {
@@ -87,6 +94,7 @@
   inset 6px 6px 4px rgba(255, 255, 255, 0.2),
   0 4px 6px rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .round-button:hover {

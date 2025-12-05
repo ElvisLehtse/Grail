@@ -3,7 +3,10 @@
   <button
     *ngFor="let grid of mapGrids; let i = index"
     [disabled]="!grid.open"
-    [ngClass]="grid.open? 'grid-button' : grid.grail? 'grid-button-grail' : 'grid-button-closed'"
+    [ngClass]="grid.open ?
+      'grid-button' : grid.grail ?
+        'grid-button-grail' : grid.dug ?
+          'grid-button-closed' : 'grid-button-closed-round-end'"
     [style.top.px]="calculateTop(i)"
     [style.left.px]="calculateLeft(i)"
     (click)="markGrid(i)">
