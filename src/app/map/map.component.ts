@@ -35,6 +35,7 @@ export enum areas {
 export class MapComponent implements OnInit {
   public readonly twoPlayers = 2;
   public readonly threePlayers = 3;
+  public readonly rotationAnimationInMS = 500; // Match with CSS
   mapGrids: gridObject[] = [];
   roundButtons: string[] = ["End of First Round", "End of Second Round", "End of Third Round", "End of Fourth Round"];
   numberOfRoundsEnded: number = 0;
@@ -145,8 +146,17 @@ export class MapComponent implements OnInit {
     this.clueGrids.push(this.clueService.getClue(this.numberOfRoundsEnded));
   }
 
-  openSettings() {
+  openSettings(event: Event) {
     this.isSettingsOpen = !this.isSettingsOpen;
+    this.rotateSettingsIcon(event)
+  }
+
+  async rotateSettingsIcon(event: Event) {
+    const button = event.currentTarget as HTMLElement;
+    button.classList.remove('rotate-once');
+    void button.offsetWidth;
+    button.classList.add('rotate-once');
+    setTimeout(() => button.classList.remove('rotate-once'), this.rotationAnimationInMS)
   }
 
   setPlayerCount() {

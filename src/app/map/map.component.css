@@ -208,6 +208,19 @@
   transform: scale(1);
 }
 
+.rotate-once {
+  animation: rotate360 0.5s ease-in-out forwards;
+}
+
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .settings-menu {
   position: absolute;
   display: inline-block;
