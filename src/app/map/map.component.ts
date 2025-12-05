@@ -41,11 +41,13 @@ export class MapComponent implements OnInit {
   numberOfRoundsEnded: number = 0;
   ultimateArtifact: HTMLAudioElement = new Audio();
   digSound: HTMLAudioElement = new Audio();
+  obelisk: HTMLAudioElement = new Audio();
   clueGrids: gridObject[] = [];
   areas = areas;
   isSettingsOpen: boolean = false;
   public playerCount: number = this.twoPlayers;
   public digSoundOn: boolean = true;
+  public roundEndSoundOn: boolean = true;
 
   constructor(
     private clueService: ClueService
@@ -138,12 +140,17 @@ export class MapComponent implements OnInit {
     this.ultimateArtifact.load();
     this.digSound.src = "../../../assets/sounds/DigSound.wav";
     this.digSound.load();
+    this.obelisk.src = "../../../assets/sounds/Obelisk.wav";
+    this.obelisk.load();
   }
 
   changeRound(index: number) {
     this.numberOfRoundsEnded = index + 1;
     this.mapGrids = this.clueService.markGridsAfterEndOfRound(this.mapGrids, this.playerCount);
     this.clueGrids.push(this.clueService.getClue(this.numberOfRoundsEnded));
+    if (this.roundEndSoundOn) {
+      this.obelisk.play();
+    }
   }
 
   openSettings(event: Event) {
@@ -165,5 +172,9 @@ export class MapComponent implements OnInit {
 
   setDigAudio() {
     this.digSoundOn = !this.digSoundOn;
+  }
+
+  setRoundEndAudio() {
+    this.roundEndSoundOn = !this.roundEndSoundOn;
   }
 }

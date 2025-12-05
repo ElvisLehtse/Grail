@@ -97,46 +97,61 @@
   <img ngSrc="assets/images/SettingsMenu.png" alt="Settings Menu" height="339" width="216">
   <span class="player-settings-text">Player count</span>
   <div
-    class="player-count-container">
+    class="settings-container top-50">
     <span>Two players</span>
     <button
       (click)="setPlayerCount()"
       [disabled]="playerCount === twoPlayers"
-      class="player-count-button-container">
+      class="settings-button-container">
       <ng-container *ngIf="playerCount === twoPlayers; else playerCountThree">
-        <pre class="player-count-button">(⚪)</pre>
+        <pre class="settings-button">(⚪)</pre>
       </ng-container>
       <ng-template #playerCountThree>
-        <pre class="player-count-button">(  )</pre>
+        <pre class="settings-button">(  )</pre>
       </ng-template>
     </button>
   </div>
   <div
-    class="player-count-container">
+    class="settings-container top-50">
     <span>Three players</span>
     <button
       (click)="setPlayerCount()"
       [disabled]="playerCount === threePlayers"
-      class="player-count-button-container">
+      class="settings-button-container">
       <ng-container *ngIf="playerCount === threePlayers; else playerCountTwo">
-        <pre class="player-count-button">(⚪)</pre>
+        <pre class="settings-button">(⚪)</pre>
       </ng-container>
       <ng-template #playerCountTwo>
-        <pre class="player-count-button">(  )</pre>
+        <pre class="settings-button">(  )</pre>
+      </ng-template>
+    </button>
+  </div>
+  <span class="sound-settings-text">Sounds</span>
+  <div
+    class="settings-container top-90">
+    <span>Dig sound</span>
+    <button
+      (click)="setDigAudio()"
+      class="settings-button-container">
+      <ng-container *ngIf="digSoundOn; else digSoundOff">
+        <pre class="settings-button">(⚪)</pre>
+      </ng-container>
+      <ng-template #digSoundOff>
+        <pre class="settings-button">(  )</pre>
       </ng-template>
     </button>
   </div>
   <div
-    class="sound-settings-container">
-    <span>Dig sound</span>
+    class="settings-container top-90">
+    <span>Round end</span>
     <button
-      (click)="setDigAudio()"
-      class="dig-sound-button">
-      <ng-container *ngIf="digSoundOn; else digSoundOff">
-        <pre>(⚪)</pre>
+      (click)="setRoundEndAudio()"
+      class="settings-button-container">
+      <ng-container *ngIf="roundEndSoundOn; else roundEndSoundOff">
+        <pre class="settings-button">(⚪)</pre>
       </ng-container>
-      <ng-template #digSoundOff>
-        <pre>(  )</pre>
+      <ng-template #roundEndSoundOff>
+        <pre class="settings-button">(  )</pre>
       </ng-template>
     </button>
   </div>

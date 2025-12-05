@@ -238,14 +238,13 @@
   top: 0;
 }
 
-
 .settings-menu img {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.player-settings-text, .player-count-container, .sound-settings-container {
+.player-settings-text, .sound-settings-text, .settings-container {
   position: relative;
   font-family: 'Cinzel Decorative', serif;
   font-weight: bold;
@@ -263,9 +262,13 @@
   top: 40px;
 }
 
-.player-count-container {
+.sound-settings-text {
+  font-size: 25px;
+  top: 80px
+}
+
+.settings-container {
   display: flex;
-  top: 50px;
   margin-top: 10px;
   margin-bottom: 20px;
   width: 100%;
@@ -274,7 +277,15 @@
   font-size: 20px;
 }
 
-.player-count-button-container {
+.top-50 {
+  top: 50px;
+}
+
+.top-90 {
+  top: 95px;
+}
+
+.settings-button-container {
   font-size: 17px;
   color: rgb(228, 220, 220);
   background: transparent;
@@ -283,23 +294,6 @@
   display: inline-flex;
 }
 
-.player-count-button {
+.settings-button {
   margin: 0;
-}
-
-.sound-settings-container {
-  font-size: 25px;
-  top: 80px;
-}
-
-.dig-sound-button {
-  font-size: 17px;
-  color: rgb(228, 220, 220);
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  display: block;
-  text-align: center;
-  justify-content: center;
-  width: 100%;
 }
